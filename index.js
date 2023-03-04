@@ -1,5 +1,5 @@
 const express = require("express");
-const app = express();
+export const app = express();
 const cors = require("cors");
 const pool = require("./db");
 //middleware
@@ -61,8 +61,10 @@ app.put("/todo/:id", async (req, res) => {
 app.delete("/todo/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const deleteTodo=await pool.query("DELETE FROM todo WHERE todo_id=$1",[id])
-    res.json('TODO deleted ')
+    const deleteTodo = await pool.query("DELETE FROM todo WHERE todo_id=$1", [
+      id,
+    ]);
+    res.json("TODO deleted ");
   } catch (error) {
     console.log(err.message);
   }
@@ -70,3 +72,5 @@ app.delete("/todo/:id", async (req, res) => {
 app.listen(5000, () => {
   console.log("first");
 });
+
+export default app;

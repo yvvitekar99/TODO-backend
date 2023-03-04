@@ -73,4 +73,3 @@ app.listen(5000, () => {
   console.log("first");
 });
 
-export default app;
